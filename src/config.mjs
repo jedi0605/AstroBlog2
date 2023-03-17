@@ -1,18 +1,18 @@
 import defaultImage from './assets/images/default.png';
 
 const CONFIG = {
-  name: 'AstroWind',
+  name: 'Code & Rhythm',
 
   origin: 'https://astrowind.vercel.app',
   basePathname: '/',
   trailingSlash: false,
 
-  title: 'AstroWind — Free template for create a website with Astro + Tailwind CSS',
+  title: 'Code & Rhythm',
   description:
-    '🚀 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs.',
+    '被搖擺舞耽誤的軟體工程師，記錄碎碎念的地方',
   defaultImage: defaultImage,
 
-  defaultTheme: 'system', // Values: "system" | "light" | "dark" | "light:only" | "dark:only"
+  defaultTheme: 'dark', // Values: "system" | "light" | "dark" | "light:only" | "dark:only"
 
   language: 'en',
   textDirection: 'ltr',
