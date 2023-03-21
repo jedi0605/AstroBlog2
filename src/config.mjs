@@ -1,13 +1,13 @@
 import defaultImage from './assets/images/default.png';
 
 const CONFIG = {
-  name: 'Code & Rhythm',
+  name: 'Meng Jay Lee',
 
   origin: 'https://astrowind.vercel.app',
   basePathname: '/',
   trailingSlash: false,
 
-  title: 'Code & Rhythm',
+  title: 'Meng Jay Lee',
   description:
     '被搖擺舞耽誤的軟體工程師，記錄碎碎念的地方',
   defaultImage: defaultImage,
