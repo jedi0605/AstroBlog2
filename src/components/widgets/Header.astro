@@ -33,7 +33,7 @@ export interface Props {
 const {
   links = [],
   actions = [],
-  isSticky = false,
+  isSticky = true,
   showToggleTheme = false,
   showRssFeed = false,
   position = 'center',
@@ -96,7 +96,7 @@ const {
         }
       </ul>
     </nav>
-    <div class:list={[{ 'ml-auto': position === 'left' }, 'md:self-center flex items-center md:mb-0']}>
+    <!-- <div class:list={[{ 'ml-auto': position === 'left' }, 'md:self-center flex items-center md:mb-0']}>
       <div class="hidden items-center md:flex">
         {showToggleTheme && <ToggleTheme iconClass="w-5 h-5" />}
 
@@ -131,6 +131,6 @@ const {
           )
         }
       </div>
-    </div>
+    </div> -->
   </div>
 </header>

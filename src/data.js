@@ -2,25 +2,30 @@ import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
 
 export const headerData = {
   links: [
+    // {
+    //   text: 'Landing',
+    //   links: [
+    //     {
+    //       text: 'Sass',
+    //       href: getPermalink('/landing/saas'),
+    //     },
+    //     {
+    //       text: 'Startup',
+    //       href: getPermalink('/landing/startup'),
+    //     },
+    //     {
+    //       text: 'Mobile App',
+    //       href: getPermalink('/landing/mobile-app'),
+    //     },
+    //   ],
+    // },
+     
     {
-      text: 'Landing',
-      links: [
-        {
-          text: 'Sass',
-          href: getPermalink('/landing/saas'),
-        },
-        {
-          text: 'Startup',
-          href: getPermalink('/landing/startup'),
-        },
-        {
-          text: 'Mobile App',
-          href: getPermalink('/landing/mobile-app'),
-        },
-      ],
+      text: 'Blog',
+      href: getBlogPermalink(),
     },
     {
-      text: 'Pages',
+      text: 'Link',
       links: [
         {
           text: 'Features',
@@ -47,15 +52,12 @@ export const headerData = {
           href: getPermalink('/privacy'),
         },
       ],
-    },    
-    {
-      text: 'Blog',
-      href: getBlogPermalink(),
-    },
+    }, 
     {
       text: 'About Me',
       href: getPermalink('/AboutMe'),
     },
+     
   ],
   actions: [
     // { type: 'button', text: 'Download', href: 'https://github.com/onwidget/astrowind' }

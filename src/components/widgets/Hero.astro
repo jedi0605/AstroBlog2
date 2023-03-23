@@ -1,110 +1,97 @@
 ---
-import { Icon } from 'astro-icon';
-import { Picture } from '@astrojs/image/components';
-
-interface CallToAction {
-  text: string;
-  href: string;
-  icon?: string;
-}
-
-export interface Props {
-  title?: string;
-  subtitle?: string;
-  callToAction?: string | CallToAction;
-  callToAction2?: string | CallToAction;
-  image?: string | any; // TODO: find HTMLElementProps
-}
-
-const {
-  title = await Astro.slots.render('title'),
-  subtitle = await Astro.slots.render('subtitle'),
-  content = await Astro.slots.render('content'),
-  callToAction = await Astro.slots.render('callToAction'),
-  callToAction2 = await Astro.slots.render('callToAction2'),
-  image = await Astro.slots.render('image'),
-} = Astro.props;
+import selfie from "~/images/selfie.png";
+import logo from "~/images/logo.svg";
+import { Picture } from "@astrojs/image/components";
+import SocialFollow from "./SocialFollow.astro";
 ---
 
-<section class="relative md:-mt-[76px]">
-  <div class="absolute inset-0 pointer-events-none" aria-hidden="true"></div>
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
-    <div class="pt-0 md:pt-[76px] pointer-events-none"></div>
-    <div class="py-12 md:py-20">
-      <div class="text-center pb-10 md:pb-16 max-w-screen-lg mx-auto">
-        {
-          title && (
-            <h1
-              class="text-5xl md:text-6xl font-bold leading-tighter tracking-tighter mb-4 font-heading dark:text-gray-200"
-              set:html={title}
-            />
-          )
-        }
-        <div class="max-w-3xl mx-auto">
-          {subtitle && <p class="text-xl text-muted mb-6 dark:text-slate-300" set:html={subtitle} />}
-          <div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4">
-            {
-              callToAction && (
-                <div class="flex w-full sm:w-auto">
-                  {typeof callToAction === 'string' ? (
-                    <Fragment set:html={callToAction} />
-                  ) : (
-                    <a class="btn btn-primary sm:mb-0 w-full" href={callToAction?.href} target="_blank" rel="noopener">
-                      {callToAction?.icon && (
-                        <>
-                          <Icon name={callToAction.icon} class="w-5 h-5 mr-1 -ml-1.5" />{' '}
-                        </>
-                      )}
-                      {callToAction?.text}
-                    </a>
-                  )}
-                </div>
-              )
-            }
-            {
-              callToAction2 && (
-                <div class="flex w-full sm:w-auto">
-                  {typeof callToAction2 === 'string' ? (
-                    <Fragment set:html={callToAction2} />
-                  ) : (
-                    <a class="btn w-full" href={callToAction2?.href}>
-                      {callToAction2?.icon && (
-                        <>
-                          <Icon name={callToAction2.icon} class="w-5 h-5 mr-1 -ml-1.5" />{' '}
-                        </>
-                      )}
-                      {callToAction2.text}
-                    </a>
-                  )}
-                </div>
-              )
-            }
-          </div>
-        </div>
-        {content && <Fragment set:html={content} />}
-      </div>
-      <div>
-        {
-          image && (
-            <div class="relative m-auto max-w-5xl">
-              {typeof image === 'string' ? (
-                <Fragment set:html={image} />
-              ) : (
-                <Picture
-                  class="mx-auto rounded-md w-full"
-                  widths={[400, 768, 1024, 2040]}
-                  sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-                  aspectRatio={1024 / 576}
-                  loading="eager"
-                  width={1024}
-                  height={576}
-                  {...image}
-                />
-              )}
-            </div>
-          )
-        }
-      </div>
+<script>
+  let nouns = ["Developer.", "Dancer.", "Exploer."];
+  let noun = nouns[0];
+  let nounIndex = 0;
+  const typewriterText = document.querySelector(".typewriter");
+  if (typewriterText) {
+    typewriterText.innerHTML = noun;
+    setInterval(() => {
+      nounIndex = (nounIndex + 1) % nouns.length;
+      noun = nouns[nounIndex];
+      typewriterText.innerHTML = noun;
+    }, 6000);
+  }
+</script>
+<div class="px-8 mt-40 mx-0 xl:-mx-20">
+  <div
+    class="max-w-6xl mx-auto items-start justify-center gap-4 pb-20 sm:pb-0 sm:h-[calc(100vh-180px)] flex flex-col relative"
+  >
+    <div class="xl:max-w-xl max-w-lg relative translate-y-0 sm:-translate-y-60">
+      <h1
+        class="xl:text-8xl text-4xl md:text-6xl mb-8 font-bold"
+        aria-label="I'm a developer, speaker, and teacher."
+      >
+        I'm a <span class="text-brand block typewriter"></span>
+      </h1>
+      <p class="text-xl md:text-2xl mb-5 lg:max-w-sm xl:max-w-6xl">
+        I use content creation to <span class="text-brand font-bold"
+          >teach and inspire</span
+        > developers.
+      </p>
+      <SocialFollow />
     </div>
+    <img
+      src={logo.src}
+      class="absolute sm:block hidden right-0 lg:-right-20 -top-20 h-screen -z-10 opacity-70 max-w-4xl"
+      alt=""
+    />
+    <Picture
+      src={selfie}
+      sizes="(max-width:800px) 100vw, 800px"
+      widths={[400, 800, 1600]}
+      aspectRatio="1:1"
+      class="absolute hidden sm:block bottom-0 right-0 translate-x-20 xl:max-w-[800px] lg:max-w-[700px] md:max-w-[600px]"
+      alt="James Q Quick selfie"
+    />
   </div>
-</section>
+</div>
+
+<style>
+  .typewriter {
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: 0.1em solid orange;
+    white-space: nowrap; /* Keeps the content on a single line */
+    animation: typing 6s steps(40, end) infinite,
+      blink-caret 0.75s step-end infinite;
+  }
+
+  /* The typing effect */
+  @keyframes typing {
+    0% {
+      width: 0;
+    }
+    5% {
+      width: 0;
+    }
+    30% {
+      width: 100%;
+    }
+    60% {
+      width: 100%;
+    }
+    95% {
+      width: 0;
+    }
+    100% {
+      width: 0;
+    }
+  }
+
+  /* The typewriter cursor effect */
+  @keyframes blink-caret {
+    from,
+    to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: orange;
+    }
+  }
+</style>
